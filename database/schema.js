@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/xillow');
 mongoose.connection.dropDatabase();
 
+
 // Schema
 const houseSchema = mongoose.Schema({
   id: { type: Number, required: true, unique: true },
