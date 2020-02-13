@@ -27,7 +27,7 @@ app.get('/houses', Controller.getAllHouses);
 app.get('/houses/:houseId', Controller.getOneHouse) 
 
 // put request by id handler
-app.put('/houses/:houseId/', Controller.updateHouse);
+app.put('/houses/:houseId', Controller.updateHouse);
 
 // delete request by id handler
 app.delete('/houses/:houseId', Controller.removeHouse);
