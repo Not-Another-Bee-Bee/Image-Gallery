@@ -18,18 +18,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.get('/houses', retrieve);
 
 // post request  
-app.post('/houses', Controller.addHouse);
+app.post('/houses', Controller.handlePost);
 
 // get request for all handler
-app.get('/houses', Controller.getAllHouses);
+app.get('/houses', Controller.handleGetAll);
 
 // get request by id handler
-app.get('/houses/:houseId', Controller.getOneHouse) 
+app.get('/houses/:houseId', Controller.handleGetOne) 
 
 // put request by id handler
-app.put('/houses/:houseId', Controller.updateHouse);
+app.put('/houses/:houseId', Controller.handleUpdate);
 
 // delete request by id handler
-app.delete('/houses/:houseId', Controller.removeHouse);
+app.delete('/houses/:houseId', Controller.handleDelete);
 
 app.listen(PORT, () => console.log('Listening on port: ' + PORT));
