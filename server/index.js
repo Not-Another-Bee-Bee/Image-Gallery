@@ -4,32 +4,36 @@ const app = express();
 const morgan = require('morgan');
 const PORT = 3004;
 const bodyParser = require('body-parser');
-const Controller = require('../database/Controller.js');
-
-// const schema = require('../database/schema.js');
-// const retrieve = schema.retrieve;
-// const save = schema.save;
+// const router = require('express').Router();
+const controller = require('../database/controllers/controller.js');
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.get('/houses', retrieve);
+// LISTINGS API ROUTES
 
-// post request  
-app.post('/houses', Controller.handlePost);
+// route to handle retrieving a image for a given listing
+app.get('/listings/:listingID/images/:imageID', controller.gallery.handleGetOne); 
 
-// get request for all handler
-app.get('/houses', Controller.handleGetAll);
+// route to handle retrieving all images for a given listing
+app.get('/listings/:listingID/images', controller.gallery.handleGetAll);
 
-// get request by id handler
-app.get('/houses/:houseId', Controller.handleGetOne) 
+// route to handle adding a image for a given listing and agent
+app.post('/listings/:listingID/agents/:agentID/image', controller.gallery.handlePostOne);
 
-// put request by id handler
-app.put('/houses/:houseId', Controller.handleUpdate);
+// route to handle updating a image for a given listing and agent
+app.put('/listings/:listingID/agents/:agentID/images/:imageID', controller.gallery.handleUpdateOne);
 
-// delete request by id handler
-app.delete('/houses/:houseId', Controller.handleDelete);
+// route to handle partial update of a image for a given listing and agent
+app.patch('/listings/:listingID/agents/:agentID/images/:imageID', controller.gallery.handlePartialUpdateOne);
+
+// route to handle deleting a image for a given listing and agent
+app.delete('/listings/:listingID/agents/:agentID/images/:imageID', controller.gallery.handleDeleteOne);
+
+// route to handle deleting all images for a given listing and agent
+app.delete('/listings/:listingID/agents/:agentID/images', controller.gallery.handleDeleteAll); 
+
 
 app.listen(PORT, () => console.log('Listening on port: ' + PORT));
