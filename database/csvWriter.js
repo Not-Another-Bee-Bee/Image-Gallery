@@ -68,10 +68,10 @@ const seeder = (n, type) => {
     
 }
 
-seeder(10000000,'PGSQL_listings');
-seeder(50000000,'PGSQL_photos');
-seeder(50000000,'PGSQL_users');
-seeder(10000000,'PGSQL_saved');
+// seeder(10000000,'PGSQL_listings');
+// seeder(50000000,'PGSQL_photos');
+// seeder(50000000,'PGSQL_users');
+// seeder(10000000,'PGSQL_saved');
 seeder(10000000,'MONGO_listings');
 
 const csvWriter = (csvFile, columns, records) => {
@@ -90,11 +90,11 @@ const csvWriter = (csvFile, columns, records) => {
         })
 }
 
-csvWriter('PGSQL_listings.csv', ['id','agent_id','listing_address','price','numBedrooms','numBathrooms','sqft','saleStatus'], PGSQL_listings_records);
-csvWriter('PGSQL_photos.csv', ['id', 'photo_url', 'listing_id'], PGSQL_photos_records);
-csvWriter('PGSQL_users.csv', ['id'], PGSQL_users_records);
-csvWriter('PGSQL_saved.csv', ['saved', 'listing_id', 'users_id'], PGSQL_saved_records);
-csvWriter('MONGO_listings.csv', ['listing_id', 'agent_id', 'listing_address', 'images', 'price', 'numBedrooms', 'numBathrooms', 'sqft', 'saleStatus', 'savedByUsers'], MONGO_listings_records);
+// csvWriter('PGSQL_listings.csv', ['id','agent_id','listing_address','price','numBedrooms','numBathrooms','sqft','saleStatus'], PGSQL_listings_records);
+// csvWriter('PGSQL_photos.csv', ['id', 'photo_url', 'listing_id'], PGSQL_photos_records);
+// csvWriter('PGSQL_users.csv', ['id'], PGSQL_users_records);
+// csvWriter('PGSQL_saved.csv', ['saved', 'listing_id', 'users_id'], PGSQL_saved_records);
+csvWriter('mongo_listings.csv', ['listing_id', 'agent_id', 'listing_address', 'images', 'price', 'numBedrooms', 'numBathrooms', 'sqft', 'saleStatus', 'savedByUsers'], MONGO_listings_records);
 
 
 // const csvWriterPGSQL_Listings = createCsvWriter({

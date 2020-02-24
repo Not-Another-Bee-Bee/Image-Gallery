@@ -8,7 +8,7 @@
 
 ### Listing Routes:
 
-* **URL**: /listings/:listingID/images
+* **URL**: /listings/:listingID/users/:userID/images
   * **Notes:** Gets data for all images in a specific listing
   * **Method:** _`GET`_
   * **Example:** `GET listings/25/images`   
@@ -29,7 +29,7 @@ image = [
   }
 ]
 ```
-* **URL**: /listings/:listingID/images/:imageID
+* **URL**: /listings/:listingID/users/:userID/images/:imageID
   * **Notes:** Gets data for a specific image in a specific listing
   * **Method:** _`GET`_
   * **Example:** `GET listings/25/images/3`   

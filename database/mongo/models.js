@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const mongoUrl = 'mongodb://localhost/xillow';
-const GalleryModel = require('../db/mongoSchema.js');
+const ListingModel = require('./schema.js');
 
 mongoose.connect(mongoUrl);
 
@@ -8,7 +8,7 @@ mongoose.connect(mongoUrl);
 module.exports = {
     gallery: {
         getOne: (id, callback) => {
-            GalleryModel.find({ listing_id: Number(id)})
+            ListingModel.find({ listing_id: Number(id)})
                 .then((results) => {
                     callback(null, results);
                 }) 
@@ -17,7 +17,7 @@ module.exports = {
                 })
         },
         getAll: (callback) => {
-            GalleryModel.find({})
+            ListingModel.find({})
                 .then((results) => {
                     callback(null, results);
                 })
@@ -26,8 +26,8 @@ module.exports = {
                 })
         },
         postOne: (data, callback) => {
-            const GalleryInstance = new GalleryModel(data);
-            GalleryInstance.save()
+            const ListingInstance = new ListingModel(data);
+            ListingInstance.save()
                 .then((results) => {
                     callback(null, results);
                 })
@@ -37,7 +37,7 @@ module.exports = {
 
         },
         updateOne: (id, data, callback) => {
-            GalleryModel.updateOne({ listing_id: Number(id) }, data )
+            ListingModel.updateOne({ listing_id: Number(id) }, data )
                 .then((results) => {
                     callback(null, results);
                 })
@@ -46,7 +46,7 @@ module.exports = {
                 })
         },
         updateOnePart: (id, data, callback) => {
-            GalleryModel.updateOne({ listing_id: Number(id) }, { $set: data } )
+            ListingModel.updateOne({ listing_id: Number(id) }, { $set: data } )
                 .then((results) => {
                     callback(null, results);
                 })
@@ -55,7 +55,7 @@ module.exports = {
                 })
         },
         deleteOne: (id, callback) => {
-            GalleryModel.deleteOne({ listing_id: Number(id) })
+            ListingModel.deleteOne({ listing_id: Number(id) })
                 .then((results) => {
                     callback(null, results);
                 })
@@ -64,7 +64,7 @@ module.exports = {
                 })
         },
         deleteAll: (callback) => {
-            GalleryModel.deleteMany({})
+            ListingModel.deleteMany({})
                 .then((results) => {
                     callback(null, results);
                 })
