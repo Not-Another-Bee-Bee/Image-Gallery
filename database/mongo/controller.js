@@ -2,77 +2,64 @@ const models = require('./models.js');
 
 module.exports.controller = {
     gallery: {
-        handleGetOne: (req, res) => {
-            // get one house with id as paramater 
-            const {id} = req.params
-            models.gallery.getOne(id, (error, results) => {
-                if (error) {
-                    res.status(500).end();
-                } else {
-                    res.status(200).send(results);
-                }
-            })
-        },
-        handleGetAll: (req, res) => {
-            // get all houses' data
-            models.gallery.getAll((error, results) => {
-                if (error) {
-                    res.status(500).end();
-                } else {
-                    res.status(200).send(results);
-                }
-            })
-        },
-        handlePostOne: (req, res) => {
-            // add a house's data
-            models.gallery.postOne(req.body, (error, results) => {
-                if (error) {
-                    res.status(500).end();
-                } else {
-                    res.status(200).send(results);
-                }
-            })
-        },
-        handleUpdateOne: (req, res) => {
-            // update house data with id as parameter
+        getListing: (req, res) => {
             const {id} = req.params;
-            models.gallery.updateOne(id, (error, results) => {
+            models.gallery.getListing(id, (error, results) => {
                 if (error) {
-                    res.status(500).end();
+                    res.status(500).send(error);
                 } else {
+                    console.log(`GET listing w/ id of ${id}`)
                     res.status(200).send(results);
                 }
             })
         },
-        handlePartialUpdateOne: (req, res) => {
-            // update part of a house's data with id as a parameter
-            const {id} = req.params;
-            models.gallery.updateOnePart(id, (error, results) => {
+        getAllListings: (req, res) => {
+            models.gallery.getAllListings(id, (error, results) => {
                 if (error) {
-                    res.status(500).end();
+                    res.status(500).send(error);
                 } else {
+                    console.log(`GET all listings`)
                     res.status(200).send(results);
+                }
+            })
+        },
+        addListing: (req, res) => {
+            models.gallery.addListing(req.body, (error) => {
+                if (error) {
+                    res.status(500).send(error);
+                } else {
+                    res.status(200).send(`ADDED listing`);
+                }
+            })
+        },
+        updateListing: (req, res) => {
+            const {id} = req.params;
+            models.gallery.updateListing(id, req.body, (error) => {
+                if (error) {
+                    res.status(500).send(error);
+                } else {
+                    res.status(200).send(`UPDATED listing w/ id of ${id}`);
                 }
             } )
         },
-        handleDeleteOne: (req, res) => {
-            // delete house data with id as parameter
-            const {id} = req.params
-            models.gallery.deleteOne(id, (error, results) => {
+        updatePartOfListing: (req, res) => {
+            // update part of a house's data with id as a parameter
+            const {id} = req.params;
+            models.gallery.updateListingPrice(id, req.body, (error) => {
                 if (error) {
-                    res.status(500).end();
+                    res.status(500).send(error);
                 } else {
-                    res.status(200).send(results);
+                    res.status(200).send(`UPDATED listing's price w/ id of ${id}`);
                 }
-            })
+            } )
         },
-        handleDeleteAll: (req, res) => {
-            // delete all houses' data
-            models.gallery.deleteAll((error, results) => {
+        deleteListing: (req, res) => {
+            const {id} = req.params;
+            models.gallery.deleteListing(id, (error) => {
                 if (error) {
-                    res.status(500).end();
+                    res.status(500).send(error);
                 } else {
-                    res.status(200).send(results);
+                    res.status(200).send(`DELETED listing w/ id of ${id}`);
                 }
             })
         }

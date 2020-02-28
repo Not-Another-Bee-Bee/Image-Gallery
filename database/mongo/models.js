@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const mongoUrl = 'mongodb://localhost/xillow';
 const ListingModel = require('./schema.js');
 
-mongoose.connect(mongoUrl);
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // functions for the queries in db
 module.exports = {
     gallery: {
-        getOne: (id, callback) => {
+        getListing: (id, callback) => {
             ListingModel.find({ listing_id: Number(id)})
                 .then((results) => {
                     callback(null, results);
@@ -16,16 +16,16 @@ module.exports = {
                     callback(error);
                 })
         },
-        getAll: (callback) => {
+        getAllListings: (callback) => {
             ListingModel.find({})
                 .then((results) => {
                     callback(null, results);
-                })
+                }) 
                 .catch((error) => {
                     callback(error);
                 })
         },
-        postOne: (data, callback) => {
+        addListing: (data, callback) => {
             const ListingInstance = new ListingModel(data);
             ListingInstance.save()
                 .then((results) => {
@@ -36,7 +36,7 @@ module.exports = {
                 })
 
         },
-        updateOne: (id, data, callback) => {
+        updateListing: (id, data, callback) => {
             ListingModel.updateOne({ listing_id: Number(id) }, data )
                 .then((results) => {
                     callback(null, results);
@@ -45,7 +45,7 @@ module.exports = {
                     callback(error);
                 })
         },
-        updateOnePart: (id, data, callback) => {
+        updatePartOfListing: (id, data, callback) => {
             ListingModel.updateOne({ listing_id: Number(id) }, { $set: data } )
                 .then((results) => {
                     callback(null, results);
@@ -54,7 +54,7 @@ module.exports = {
                     callback(error);
                 })
         },
-        deleteOne: (id, callback) => {
+        deleteListing: (id, callback) => {
             ListingModel.deleteOne({ listing_id: Number(id) })
                 .then((results) => {
                     callback(null, results);
@@ -63,7 +63,7 @@ module.exports = {
                     callback(error);
                 })
         },
-        deleteAll: (callback) => {
+        deleteAllListings: (callback) => {
             ListingModel.deleteMany({})
                 .then((results) => {
                     callback(null, results);
