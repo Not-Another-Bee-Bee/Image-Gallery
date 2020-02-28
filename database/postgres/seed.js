@@ -8,6 +8,7 @@ const pool = new Pool({
     port: '5432'
 });
 
+
 const filePath1 = path.join(__dirname, 'pgsql_listings.csv');
 const insertCSV_Listings = () => {
     pool.query(`COPY listings(id, listing_address, price, numBedrooms, numBathrooms, sqft, saleStatus, agent_id) FROM '${filePath1}' DELIMITER ',' CSV HEADER;`, err => {
@@ -52,10 +53,18 @@ const insertCSV_Saved = () => {
     });
 };
 
+// insertCSV_Users();
+
+// insert into users(id) values (0);
+
 // insertCSV_Listings();
+
+// insert into listings (id, listing_address, price, numbedrooms, numbathrooms, sqft, salestatus, agent_id) values(0, '471 6th Ave', 300000, 5, 5, 10000, 'Pending', 5000);
 
 // insertCSV_Photos();
 
-// insertCSV_Users();
+ insert into photos (id, photo_url, listing_id) values (0, 'https://airbnb-recommendation-photos.s3-us-west-1.amazonaws.com/photo1', 0);
 
 // insertCSV_Saved();
+
+// scp -i /Users/donchen/Desktop/SEC-Project/SEC_private_key.pem -r /Users/donchen/Desktop/SEC-Project/ImageGallery/database/postgres ubuntu@ec2-13-52-102-70.us-west-1.compute.amazonaws.com:database
