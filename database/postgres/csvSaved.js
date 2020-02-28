@@ -14,7 +14,7 @@ const getRandomNum = (min, max) => {
 
 // This will create 50 million saved pairs. Create the data as comma separated values 
 const createCSV = (writer, encoding, callback) => {
-    let i = 50000000;
+    let i = 10000000;
     let id = 0;
     const write = () => {
         let ok = true;

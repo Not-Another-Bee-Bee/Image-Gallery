@@ -21,7 +21,7 @@ const createCSV = (writer, encoding, callback) => {
         do {
             i-=1;
             id += 1;
-            const agent_id = getRandomNum(0, 5000000);
+            const agent_id = getRandomNum(0, 1000000);
             const listing_address = faker.address.streetAddress() + '/' + faker.address.streetName()
                 + '/' + faker.address.city() + '/' + faker.address.stateAbbr() + '/' + faker.address.zipCode().slice(0, 5);
             const price = getRandomNum(100000, 5000000);
