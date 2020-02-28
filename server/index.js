@@ -4,32 +4,35 @@ const app = express();
 const morgan = require('morgan');
 const PORT = 3004;
 const bodyParser = require('body-parser');
-const Controller = require('../database/Controller.js');
-
-// const schema = require('../database/schema.js');
-// const retrieve = schema.retrieve;
-// const save = schema.save;
+// const router = require('express').Router();
+const controller = require('../database/postgres/controller.js/index.js');
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.get('/houses', retrieve);
+// LISTINGS API ROUTES
+// route to handle retrieving a listing based on a user
+app.get('/listings/:listingID/users/:userID', controller.gallery.getListing); 
 
-// post request  
-app.post('/houses', Controller.handlePost);
+// route to handle adding a listing
+app.post('/listings', controller.gallery.addListing);
 
-// get request for all handler
-app.get('/houses', Controller.handleGetAll);
+// route to handle adding a photo to a listing
+app.post('/listings/:listingID/photos', controller.gallery.addPhoto);
 
-// get request by id handler
-app.get('/houses/:houseId', Controller.handleGetOne) 
+// route to handle updating a listing
+app.patch('/listings/:listingID', controller.gallery.updateListing);
 
-// put request by id handler
-app.put('/houses/:houseId', Controller.handleUpdate);
+// route to handle updating a photo
+app.patch('/listings/:listingID/photos/:photoID', controller.gallery.updatePhoto);
 
-// delete request by id handler
-app.delete('/houses/:houseId', Controller.handleDelete);
+// route to handle deleting a listing
+app.delete('/listings/:listingID', controller.gallery.deleteListing);
+
+// route to handle deleting a image 
+app.delete('/listings/:listingID/photos/:photoID', controller.gallery.deletePhoto); 
+
 
 app.listen(PORT, () => console.log('Listening on port: ' + PORT));

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import ShareForm from './ShareForm.jsx';
 import styled from 'styled-components';
 // from submodule AK-service
-import ModalCA from '../../../AK-service/client/comp/ModalCA.jsx';
-import ModalTT from '../../../AK-service/client/comp/ModalTT.jsx';
-import { GreyOverlay } from '../../../AK-service/client/comp/style.jsx';
+// import ModalCA from '../../../AK-service/client/comp/ModalCA.jsx';
+// import ModalTT from '../../../AK-service/client/comp/ModalTT.jsx';
+// import { GreyOverlay } from '../../../AK-service/client/comp/style.jsx';
 
 const Exit = styled.button`
 color: white;
